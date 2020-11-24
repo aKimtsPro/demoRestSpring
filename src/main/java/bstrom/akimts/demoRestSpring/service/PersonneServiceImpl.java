@@ -13,7 +13,6 @@ public class PersonneServiceImpl implements PersonneService {
 
     private List<Personne> list = new ArrayList<>();
 
-    public void rien(){}
     public void prouverExistence(){
         System.out.println("j'existe");
     }

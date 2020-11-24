@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,9 +36,14 @@ public class HelloController {
 
     // POST > http://localhost:8080/hello -> ecrit la chaine envoyé par post dans la console de l'appli
     @PostMapping
-    public void writeInConsole(@Valid @RequestBody Personne body){
+    public void writeInConsole(@RequestBody Personne body){
         System.out.println(body);
         // throw new RuntimeException();
+    }
+
+    @PostMapping("/date")
+    private void testDate(@RequestBody LocalDate date){
+        System.out.println(date);
     }
 
 }

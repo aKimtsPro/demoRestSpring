@@ -1,13 +1,13 @@
 package bstrom.akimts.demoRestSpring.controller;
 
 import bstrom.akimts.demoRestSpring.service.PersonneService;
-import org.springframework.beans.factory.annotation.Autowired;
+import bstrom.akimts.demoRestSpring.service.PersonneServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/list")
+@RequestMapping
 public class ListController {
 
     private final PersonneService service;
@@ -22,8 +22,8 @@ public class ListController {
         service.prouverExistence();
     }
 
-    // requete pour ajouter
-    // requete pour supprimer un élément
-    // requète pour ecrire un élément en console
+    // requete pour ajouter une Personne
+    // requete pour supprimer une Personne selon sa position dans la liste
+    // requète pour ecrire une Personne selon sa position dans la liste
 
 }

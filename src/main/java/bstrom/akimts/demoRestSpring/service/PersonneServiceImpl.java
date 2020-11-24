@@ -2,13 +2,15 @@ package bstrom.akimts.demoRestSpring.service;
 
 import bstrom.akimts.demoRestSpring.model.Personne;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
+//@Validated
 public class PersonneServiceImpl implements PersonneService {
 
     private List<Personne> list = new ArrayList<>();
@@ -17,7 +19,7 @@ public class PersonneServiceImpl implements PersonneService {
         System.out.println("j'existe");
     }
 
-    public void add(@Valid Personne pers){
+    public void add( Personne pers){
         list.add(pers);
     }
 

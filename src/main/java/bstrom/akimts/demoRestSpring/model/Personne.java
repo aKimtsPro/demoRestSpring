@@ -17,14 +17,14 @@ public class Personne {
     @Max(120) // @Min(0)
     @PositiveOrZero // @Positive // @Negative // @NegativeOrZero
     private int age;
-    @AssertFalse //@AssertTrue
-    private boolean isTall;
-    @NotNull
-    @Past // @PastOrPresent // @Future // @FutureOrPresent
-    private LocalDate dateNaiss;
-    // @Pattern("regex")
-    @Email
-    private String email;
+//    @AssertFalse //@AssertTrue
+//    private boolean isTall;
+//    @NotNull
+//    @Past // @PastOrPresent // @Future // @FutureOrPresent
+//    private LocalDate dateNaiss;
+//    // @Pattern("regex")
+//    @Email
+//    private String email;
 
 
     @Override

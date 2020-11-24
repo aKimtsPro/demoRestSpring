@@ -1,10 +1,22 @@
 package bstrom.akimts.demoRestSpring.controller;
 
 import bstrom.akimts.demoRestSpring.model.Personne;
+import bstrom.akimts.demoRestSpring.model.DemoContrainte;
 import bstrom.akimts.demoRestSpring.service.PersonneService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/list")
@@ -22,9 +34,10 @@ public class ListController {
         service.prouverExistence();
     }
 
+
     // POST > http://localhost:8080/list -> requete pour ajouter une Personne
     @PostMapping
-    public void add(@RequestBody Personne pers){
+    public void add(@Valid @RequestBody Personne pers){
         service.add(pers);
     }
 
@@ -39,5 +52,6 @@ public class ListController {
     public void delete(@PathVariable(name = "index") int toDelete){
         service.remove(toDelete);
     }
+
 
 }

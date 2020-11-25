@@ -5,6 +5,7 @@ import bstrom.akimts.demoRestSpring.service.PersonneService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/list")

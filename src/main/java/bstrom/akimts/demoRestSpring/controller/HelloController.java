@@ -1,6 +1,8 @@
 package bstrom.akimts.demoRestSpring.controller;
 
 import bstrom.akimts.demoRestSpring.model.Personne;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,9 +43,12 @@ public class HelloController {
         // throw new RuntimeException();
     }
 
-    @PostMapping("/date")
-    private void testDate(@RequestBody LocalDate date){
-        System.out.println(date);
+    @GetMapping("/header")
+    public void getHeaders(@RequestHeader HttpHeaders header){
+        header.forEach((key, listValue) ->{
+            System.out.println("- clef : "+key+" ------------");
+            listValue.forEach(System.out::println);
+        });
     }
 
 }

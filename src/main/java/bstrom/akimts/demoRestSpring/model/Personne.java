@@ -3,6 +3,7 @@ package bstrom.akimts.demoRestSpring.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;

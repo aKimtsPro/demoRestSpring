@@ -2,6 +2,7 @@ package bstrom.akimts.demoRestSpring.controller;
 
 import bstrom.akimts.demoRestSpring.model.Personne;
 import bstrom.akimts.demoRestSpring.service.PersonneService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

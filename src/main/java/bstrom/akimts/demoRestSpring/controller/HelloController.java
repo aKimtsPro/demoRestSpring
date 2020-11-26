@@ -1,6 +1,7 @@
 package bstrom.akimts.demoRestSpring.controller;
 
 import bstrom.akimts.demoRestSpring.model.Personne;
+import bstrom.akimts.demoRestSpring.service.exception.VoitureNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -51,4 +52,8 @@ public class HelloController {
         });
     }
 
+    @GetMapping("/throw") // demo controllerAdvice
+    public void throwVoitureNotFound(){
+        throw new VoitureNotFoundException(0);
+    }
 }

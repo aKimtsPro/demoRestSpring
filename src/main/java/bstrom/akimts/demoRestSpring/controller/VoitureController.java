@@ -1,14 +1,16 @@
 package bstrom.akimts.demoRestSpring.controller;
 
 import bstrom.akimts.demoRestSpring.model.Voiture;
+import bstrom.akimts.demoRestSpring.model.VoitureNotFoundReport;
 import bstrom.akimts.demoRestSpring.service.VoitureService;
 import bstrom.akimts.demoRestSpring.service.exception.VoitureNotFoundException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -39,12 +41,8 @@ public class VoitureController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("voit-count", Integer.toString(service.count()) );
 
-        try{
-            Voiture body = service.readOne( index );
-            return new ResponseEntity<>(body, headers, HttpStatus.OK);
-        } catch ( VoitureNotFoundException e ){
-            return new ResponseEntity<>(null, headers, HttpStatus.BAD_REQUEST);
-        }
+        Voiture body = service.readOne( index );
+        return new ResponseEntity<>(body, headers, HttpStatus.OK);
 
     }
 
@@ -61,15 +59,10 @@ public class VoitureController {
     @PutMapping("/{index}")
     public ResponseEntity<String> update(@PathVariable int index, @RequestBody Voiture voit){
 
-        try{
-            service.update(index, voit);
-            return ResponseEntity.ok()
-                    .header("voit-count", Integer.toString(service.count()))
-                    .body("voiture modifiée");
-        }catch (VoitureNotFoundException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("voiture non trouvée");
-        }
+        service.update(index, voit);
+        return ResponseEntity.ok()
+                .header("voit-count", Integer.toString(service.count()))
+                .body("voiture modifiée");
 
     }
 
@@ -77,24 +70,14 @@ public class VoitureController {
     @DeleteMapping("/{index}")
     public ResponseEntity<String> delete(@PathVariable int index){
 
-        try{
-            service.delete(index);
-            return ResponseEntity.ok()
-                    .header("voit-count", Integer.toString(service.count()))
-                    .body("voiture d'index " + index + "supprimée");
-        }catch (VoitureNotFoundException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .header("voit-count", Integer.toString(service.count()))
-                    .body("index invalide");
-        }
+        service.delete(index);
+        return ResponseEntity.ok()
+                .header("voit-count", Integer.toString(service.count()))
+                .body("voiture d'index " + index + "supprimée");
 
     }
 
-
-
-
     // endregion
-
 
     // region exemple
 
@@ -131,6 +114,38 @@ public class VoitureController {
                 .body(body);
 
     }
+
+    // endregion
+
+    // region demo exceptionHandler
+
+
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<String> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex, HttpServletRequest req){
+//
+//        // return ResponseEntity.badRequest().body(ex); // fout le bordel
+//
+//        StringBuilder body = new StringBuilder("- Global violation --------------------\n");
+//
+//        if(ex.getGlobalErrorCount() == 0)
+//            body.append("\taucune\n");
+//
+//        for (ObjectError globalError : ex.getGlobalErrors()) {
+//            body.append(globalError.getObjectName()).append(" - ").append(globalError.getDefaultMessage()).append("\n");
+//        }
+//
+//        body.append("- field violation --------------------\n");
+//
+//        if(ex.getFieldErrorCount() == 0)
+//            body.append("\taucune\n");
+//
+//        for (FieldError fieldError : ex.getFieldErrors()) {
+//            body.append(fieldError.getField()).append(" - ").append(fieldError.getDefaultMessage()).append("\n");
+//        }
+//
+//        return ResponseEntity.badRequest()
+//                .body(body.toString());
+//    }
 
     // endregion
 

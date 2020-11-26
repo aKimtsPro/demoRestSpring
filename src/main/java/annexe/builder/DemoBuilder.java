@@ -10,7 +10,7 @@ public class DemoBuilder {
 
         // Grace au builder je peut prendre tout mon temps pour contruire mon Objet
 
-        AbstractPizzaBuilder p2 = new Pizza.Builder()
+        AbstractPizzaBuilder p2 = Pizza.startBuilder()
                 .setDiametre(15)
                 .setPrice(15)
                 .setName("cher");

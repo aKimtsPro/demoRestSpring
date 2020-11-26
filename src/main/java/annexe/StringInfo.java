@@ -1,5 +1,7 @@
 package annexe;
 
+import java.util.ArrayList;
+
 public class StringInfo {
 
     public static void main(String[] args) {

@@ -26,6 +26,10 @@ public class Pizza {
     // 16 constructeurs différents pour prendre en compte la presence/absence de spec des
     // différents champs !
 
+    public static Pizza.Builder startBuilder(){
+        return new Pizza.Builder();
+    }
+
     public static class Builder extends AbstractPizzaBuilder { // pas le choix si le constructeur est en private
 
         @Override
